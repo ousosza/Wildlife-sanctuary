@@ -1,6 +1,7 @@
 package th.ac.su.ict.yanapat.wildlifesanctuary
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -36,6 +37,20 @@ class MainActivity : AppCompatActivity() {
         val adapter = animalAdapter(this@MainActivity,itemList)
 
         listView.adapter = adapter
+
+        listView.setOnItemClickListener { parent, view, position, id ->
+
+
+            var intent = Intent(this@MainActivity,detailActivity::class.java)
+
+            intent.putExtra("animalName", itemList[position].animalName)
+            intent.putExtra("caption", itemList[position].caption)
+            intent.putExtra("imageFile", itemList[position].imageFile)
+            intent.putExtra("description", itemList[position].description)
+
+            startActivity(intent)
+
+        }
 
     }
 }
